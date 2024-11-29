@@ -22,7 +22,8 @@ func main() {
 	js.Global().Set("LCS", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		return LCS(StrSeq(args[0].String()), StrSeq(args[1].String()))
 	}))
-	<-c 
+	fmt.Println("Running Go")
+	<-c
 }
 
 func SentenceMatchWrapper(sent1, sent2 string) bool {
