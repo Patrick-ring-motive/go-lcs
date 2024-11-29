@@ -10,8 +10,17 @@ import (
 
 func main() {
 	c := make(chan struct{}, 0)
+	js.Global().Set("WordMatch", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		return WordMatch(args[0].String(), args[1].String())
+	}))
 	js.Global().Set("SentenceMatch", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		return SentenceMatch(args[0].String(), args[1].String())
+	}))
+	js.Global().Set("TextMatch", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		return TextMatch(args[0].String(), args[1].String())
+	}))
+	js.Global().Set("LCS", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		return LCS(StrSeq(args[0].String()), StrSeq(args[1].String()))
 	}))
 	<-c 
 }
