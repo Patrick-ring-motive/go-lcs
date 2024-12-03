@@ -10,15 +10,19 @@
     <script src="wasm_exec.js"></script>
     <script>
     void async function Main(){
-        try{
+        
         const go = new Go();
-       const result = await WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject);
-       await go.run(result.instance):
+       WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+           try{
+            go.run(result.instance);
+        
+       
     
         (document.querySelector("div")??{}).innerText = LCS("hello","world");
     } catch(e){
         (document.querySelector("div")??{}).innerText = e.message();
     }
+       });
     }?.();
     </script>
 </body>
