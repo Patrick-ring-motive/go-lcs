@@ -15,7 +15,7 @@
        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
            try{
             go.run(result.instance);
-        (document.querySelector("div")??{}).innerText = LCS("hello");
+        (document.querySelector("div")??{}).innerText = Panic("hello");
     } catch(e){
         (document.querySelector("div")??{}).innerText = e.message();
     }
