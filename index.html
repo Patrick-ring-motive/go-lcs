@@ -9,16 +9,16 @@
     <div></div>
     <script src="wasm_exec.js"></script>
     <script>
-    void async function Main(){}
+    void async function Main(){
         const go = new Go(); // Go runtime
        const result = await WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject);
        await go.run(result.instance):
     try{
         (document.querySelector("div")??{}).innerText = LCS("hello","world");
-        }?.();
     } catch(e){
         (document.querySelector("div")??{}).innerText = e.message();
     }
+    }?.();
     </script>
 </body>
 </html>
