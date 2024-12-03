@@ -22,9 +22,19 @@ func main() {
 	js.Global().Set("LCS", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		return LCS(StrSeq(args[0].String()), StrSeq(args[1].String()))
 	}))
+	js.Global().Set("Panic", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		pargs := any(args)
+		 Panic(pargs)
+		return nil
+	}))
 	fmt.Println("Running Go")
 	<-c
 }
+
+func Panic(a ...any){
+	panic(a)
+}
+
 
 func SentenceMatchWrapper(sent1, sent2 string) bool {
 	return SentenceMatch(sent1, sent2)
