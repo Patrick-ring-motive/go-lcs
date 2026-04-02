@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Go WASM Example</title>
+  <meta charset="UTF-8">
+  <title>Go WASM Example</title>
 </head>
+
 <body>
-    <h1>Go WASM Example</h1>
-    <div></div>
-    <script src="wasm_exec.js"></script>
-    <script>
-    void async function Main(){
-        
-        const go = new Go();
-       WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
-           try{
-            go.run(result.instance);
-        (document.querySelector("div")??{}).innerText = Panic("hello");
-    } catch(e){
-        (document.querySelector("div")??{}).innerText = e.message();
-    }
-       });
+  <h1>Go WASM Example</h1>
+  <div></div>
+  <script src="wasm_exec.js"></script>
+  <script>
+    void async function Main() {
+
+      const go = new Go();
+      WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+        try {
+          go.run(result.instance);
+          (document.querySelector("div") ?? {}).innerText = Panic("hello");
+        } catch (e) {
+          (document.querySelector("div") ?? {}).innerText = e.message();
+        }
+      });
     }?.();
-    </script>
+
+  </script>
 </body>
+
 </html>
